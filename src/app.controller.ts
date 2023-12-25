@@ -1,7 +1,7 @@
 import { AppService } from './app.service';
 import { Controller, Get, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { DataProvider } from './data/data';
+import { DataProvider } from './data';
 import { search } from '@metrichor/jmespath';
 
 @Controller()

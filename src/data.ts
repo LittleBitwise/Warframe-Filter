@@ -1,28 +1,28 @@
 import { Injectable } from "@nestjs/common";
 
-const all: [] = require('../../data/all.json');
-const arcanes = require('../../data/arcanes.json');
-const archgun = require('../../data/archgun.json');
-const archmelee = require('../../data/archmelee.json');
-const archwing = require('../../data/archwing.json');
-const enemy = require('../../data/enemy.json');
-const fish = require('../../data/fish.json');
-const gear = require('../../data/gear.json');
-const glyphs = require('../../data/glyphs.json');
-const melee = require('../../data/melee.json');
-const misc = require('../../data/misc.json');
-const mods = require('../../data/mods.json');
-const node = require('../../data/node.json');
-const pets = require('../../data/pets.json');
-const primary = require('../../data/primary.json');
-const quests = require('../../data/quests.json');
-const resources = require('../../data/resources.json');
-const secondary = require('../../data/secondary.json');
-const sentinels = require('../../data/sentinels.json');
-const sentinelweapons = require('../../data/sentinelweapons.json');
-const sigils = require('../../data/sigils.json');
-const skins = require('../../data/skins.json');
-const warframes = require('../../data/warframes.json');
+const all: [] = require('../data/all.json');
+const arcanes = require('../data/arcanes.json');
+const archgun = require('../data/archgun.json');
+const archmelee = require('../data/archmelee.json');
+const archwing = require('../data/archwing.json');
+const enemy = require('../data/enemy.json');
+const fish = require('../data/fish.json');
+const gear = require('../data/gear.json');
+const glyphs = require('../data/glyphs.json');
+const melee = require('../data/melee.json');
+const misc = require('../data/misc.json');
+const mods = require('../data/mods.json');
+const node = require('../data/node.json');
+const pets = require('../data/pets.json');
+const primary = require('../data/primary.json');
+const quests = require('../data/quests.json');
+const resources = require('../data/resources.json');
+const secondary = require('../data/secondary.json');
+const sentinels = require('../data/sentinels.json');
+const sentinelweapons = require('../data/sentinelweapons.json');
+const sigils = require('../data/sigils.json');
+const skins = require('../data/skins.json');
+const warframes = require('../data/warframes.json');
 
 @Injectable()
 export class DataProvider {
