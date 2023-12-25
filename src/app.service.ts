@@ -1,35 +1,26 @@
 import { Injectable } from '@nestjs/common';
-
-const mods = require('../data/Mods.json');
+import { DataProvider } from './data/data';
 
 @Injectable()
 export class AppService {
-  search(query: string) {
-    return this.getIntroduced()
-      .filter((mod: Mod) => mod.introduced.date.includes(query))
-      .map((mod: Mod) => ({ name: mod.name, wikiaUrl: mod.wikiaUrl }));
-  }
-
-  getAll(): Mod[] {
-    return mods;
+  getMods(): Mod[] {
+    return DataProvider.get(DataProvider.MOD);
   }
 
   getIntroduced() {
-    const data: ReadonlyArray<Mod> = mods;
-
-    return data
+    return this
+      .getMods()
       .filter((mod: Mod) => mod.introduced);
   }
 
   getWithoutIntroduced() {
-    const data: ReadonlyArray<Mod> = mods;
-
-    return data
+    return this
+      .getMods()
       .filter((mod: Mod) => !mod.introduced);
   }
 
   getIntersect() {
-    const data = this.getAll();
+    const data = this.getMods();
     let intersect = Object.keys(data[0]);
 
     data.forEach((value, index, array) => {
@@ -43,7 +34,7 @@ export class AppService {
 
   getDropsIntersect() {
     const data = this
-      .getAll()
+      .getMods()
       .filter(mod => Object.hasOwn(mod, 'drops'));
 
     let intersect = Object.keys(data[0].drops[0]);
@@ -59,7 +50,7 @@ export class AppService {
 
   getIntroducedIntersect() {
     const data = this
-      .getAll()
+      .getMods()
       .filter(mod => Object.hasOwn(mod, 'introduced'));
 
     let intersect = Object.keys(data[0].introduced);
@@ -73,10 +64,10 @@ export class AppService {
   }
 
   getUnion() {
-    const data = this.getAll();
+    const data = this.getMods();
 
     let union = {};
-    data.forEach(o => union = Object.assign(union, o));
+    data.forEach(o => { union = Object.assign(union, o); });
 
     return union;
   }

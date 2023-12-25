@@ -1,8 +1,8 @@
 import { AppService } from './app.service';
 import { Controller, Get, Req } from '@nestjs/common';
 import { Request } from 'express';
-
-var jmespath = require('jmespath');
+import { DataProvider } from './data/data';
+import { search } from '@metrichor/jmespath';
 
 @Controller()
 export class AppController {
@@ -10,7 +10,7 @@ export class AppController {
 
   @Get()
   getAll(): any {
-    const data = this.appService.getAll();
+    const data = this.appService.getMods();
     // console.log(data[0]);
     // console.log(this.appService.getIntersect());
     // console.log(this.appService.getDropsIntersect());
@@ -22,18 +22,18 @@ export class AppController {
 
   @Get('search')
   getSearch(@Req() request: Request): any {
-    const data = this.appService.getAll();
     const queryParams = request.query;
-
-    const content = queryParams.t;
-    const filter = queryParams.q;
+    const content = queryParams.t as string;
+    const filter = queryParams.q as string;
 
     if (!content || !filter) {
       return "Search parameters 't' and 'q' required.";
     }
 
-    const result = jmespath.search(data, filter);
-    console.log(query, result);
+    const data = DataProvider.get(content);
+
+    const result = search(data, filter);
+    console.log({content, filter, result});
 
     return result;
   }
@@ -52,19 +52,5 @@ export class AppController {
     console.log('length', data.length);
 
     return data;
-  }
-
-  @Get('year')
-  getSearchByYear(): any {
-    console.log('in', this.appService.getIntroduced().length, 'out', this.appService.getWithoutIntroduced().length);
-    const data = this.appService.search('2014');
-    console.log(data[0]);
-
-    let html = '';
-    data.forEach(
-      item => html += `<li><a href="${item['wikiaUrl']}">${item['name']}</a></li>`
-    );
-
-    return '<ol>' + html + '</ol>';
   }
 }
