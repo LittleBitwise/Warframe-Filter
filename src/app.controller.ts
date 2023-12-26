@@ -6,7 +6,7 @@ import { search } from '@metrichor/jmespath';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
   @Get()
   getAll(): any {
@@ -31,7 +31,7 @@ export class AppController {
     const data = DataProvider.get(content);
     const result = search(data, filter);
 
-    console.log({content, filter, result});
+    console.log({ content, filter, result });
 
     return result;
   }
