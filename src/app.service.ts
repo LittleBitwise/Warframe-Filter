@@ -3,26 +3,19 @@ import { DataProvider } from './data';
 
 @Injectable()
 export class AppService {
-  getMods(): Mod[] {
-    return DataProvider.get(DataProvider.MOD);
-  }
+  get(type: string): Mod[] {
+    if (!DataProvider.VALID_TYPES.includes(type)) {
+      throw new Error(`get(${type}) not valid.`);
+    }
 
-  getIntroduced() {
-    return this
-      .getMods()
-      .filter((mod: Mod) => mod.introduced);
-  }
-
-  getWithoutIntroduced() {
-    return this
-      .getMods()
-      .filter((mod: Mod) => !mod.introduced);
+    const data = DataProvider.get(type);
+    return data;
   }
 
   /// [Intersect]
   getIntersect(type: string) {
     if (!DataProvider.VALID_TYPES.includes(type)) {
-      throw new Error(`${type} not valid.`);
+      throw new Error(`getIntersect(${type}) not valid.`);
     }
 
     const data = DataProvider.get(type);
@@ -40,7 +33,7 @@ export class AppService {
   /// [Union]
   getUnion(type: string) {
     if (!DataProvider.VALID_TYPES.includes(type)) {
-      throw new Error(`${type} not valid.`);
+      throw new Error(`getUnion(${type}) not valid.`);
     }
 
     const data = DataProvider.get(type);

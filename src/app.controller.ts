@@ -10,10 +10,10 @@ export class AppController {
 
   @Get()
   getAll(): any {
-    const data = this.appService.getMods();
+    const data = this.appService.get(DataProvider.ALL);
     // console.log(data[0]);
-    console.log('intersect', this.appService.getIntersect(DataProvider.ARCANE));
-    console.log('union', this.appService.getUnion(DataProvider.ARCANE));
+    // console.log('intersect', this.appService.getIntersect(DataProvider.ARCANE));
+    // console.log('union', this.appService.getUnion(DataProvider.ARCANE));
 
     return data.length;
   }
@@ -29,26 +29,10 @@ export class AppController {
     }
 
     const data = DataProvider.get(content);
-
     const result = search(data, filter);
+
     console.log({content, filter, result});
 
     return result;
-  }
-
-  @Get('wo')
-  getWithoutIntroduced(): any {
-    const data = this.appService.getWithoutIntroduced();
-    console.log('length', data.length);
-
-    return data;
-  }
-
-  @Get('w')
-  getIntroduced(): any {
-    const data = this.appService.getIntroduced();
-    console.log('length', data.length);
-
-    return data;
   }
 }

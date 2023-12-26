@@ -1,12 +1,12 @@
 interface Mod {
+    readonly category: string;
+    readonly imageName: string;
+    readonly isPrime: boolean;
+    readonly masterable: boolean;
     readonly name: string;
+    readonly tradable: boolean;
     readonly type: string;
     readonly uniqueName: string;
-    readonly category: string;
-    readonly masterable: boolean;
-    readonly tradable: boolean;
-    readonly isPrime: boolean;
-    readonly imageName: string;
 
     readonly availableChallenges?: [];
     readonly baseDrain?: number;

@@ -7,15 +7,15 @@ interface Arcane {
     readonly type: string;
     readonly uniqueName: string;
 
-    readonly drops?: any[];
-    readonly levelStats?: any[];
-    readonly rarity?: string;
-    readonly excludeFromCodex?: boolean;
-    readonly patchlogs?: any[];
     readonly buildPrice?: number;
     readonly buildQuantity?: number;
     readonly buildTime?: number;
     readonly components?: any[];
     readonly consumeOnBuild?: boolean;
+    readonly drops?: any[];
+    readonly excludeFromCodex?: boolean;
+    readonly levelStats?: any[];
+    readonly patchlogs?: any[];
+    readonly rarity?: string;
     readonly skipBuildTimePrice?: number;
 }
