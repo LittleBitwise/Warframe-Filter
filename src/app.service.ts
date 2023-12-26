@@ -19,8 +19,13 @@ export class AppService {
       .filter((mod: Mod) => !mod.introduced);
   }
 
-  getIntersect() {
-    const data = this.getMods();
+  /// [Intersect]
+  getIntersect(type: string) {
+    if (!DataProvider.VALID_TYPES.includes(type)) {
+      throw new Error(`${type} not valid.`);
+    }
+
+    const data = DataProvider.get(type);
     let intersect = Object.keys(data[0]);
 
     data.forEach((value, index, array) => {
@@ -32,43 +37,17 @@ export class AppService {
     return intersect;
   }
 
-  getDropsIntersect() {
-    const data = this
-      .getMods()
-      .filter(mod => Object.hasOwn(mod, 'drops'));
+  /// [Union]
+  getUnion(type: string) {
+    if (!DataProvider.VALID_TYPES.includes(type)) {
+      throw new Error(`${type} not valid.`);
+    }
 
-    let intersect = Object.keys(data[0].drops[0]);
-
-    data.forEach(o => {
-      o.drops.forEach((drop: Drop) => {
-        intersect = intersect.filter(k => Object.hasOwn(drop, k))
-      });
-    })
-
-    return intersect;
-  }
-
-  getIntroducedIntersect() {
-    const data = this
-      .getMods()
-      .filter(mod => Object.hasOwn(mod, 'introduced'));
-
-    let intersect = Object.keys(data[0].introduced);
-    console.log('debug', intersect);
-
-    data.forEach(o => {
-      intersect = intersect.filter(k => Object.hasOwn(o, k))
-    })
-
-    return intersect;
-  }
-
-  getUnion() {
-    const data = this.getMods();
+    const data = DataProvider.get(type);
 
     let union = {};
-    data.forEach(o => { union = Object.assign(union, o); });
+    data.forEach(o => { union = Object.assign(union, o) });
 
-    return union;
+    return Object.keys(union);
   }
 }

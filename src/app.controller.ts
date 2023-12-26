@@ -12,10 +12,8 @@ export class AppController {
   getAll(): any {
     const data = this.appService.getMods();
     // console.log(data[0]);
-    // console.log(this.appService.getIntersect());
-    // console.log(this.appService.getDropsIntersect());
-    // console.log(this.appService.getIntroducedIntersect());
-    // console.log(Object.keys(this.appService.getUnion()));
+    console.log('intersect', this.appService.getIntersect(DataProvider.ARCANE));
+    console.log('union', this.appService.getUnion(DataProvider.ARCANE));
 
     return data.length;
   }

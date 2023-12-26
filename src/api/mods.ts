@@ -20,17 +20,17 @@ interface Mod {
     readonly isAugment?: boolean;
     readonly isExilus?: boolean;
     readonly isUtility?: boolean;
-    readonly levelStats?: [];
+    readonly levelStats?: any[];
     readonly modSet?: string;
     readonly modSetValues?: number[];
     readonly numUpgradesInSet?: number;
-    readonly patchlogs?: [];
+    readonly patchlogs?: any[];
     readonly polarity?: string;
     readonly rarity?: string;
     readonly releaseDate?: string;
-    readonly stats?: [];
+    readonly stats?: any[];
     readonly transmutable?: boolean;
-    readonly upgradeEntries: [];
+    readonly upgradeEntries: any[];
     readonly wikiaThumbnail?: string;
     readonly wikiaUrl?: string;
 }

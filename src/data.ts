@@ -50,7 +50,32 @@ export class DataProvider {
     static readonly SKIN: string = 'skins';
     static readonly WARFRAME: string = 'warframes';
 
-    static get(type: string): [] {
+    static readonly VALID_TYPES: string[] = [
+        DataProvider.ALL,
+        DataProvider.ARCANE,
+        DataProvider.ARCHGUN,
+        DataProvider.ARCHMELEE,
+        DataProvider.ARCHWING,
+        DataProvider.ENEMY,
+        DataProvider.FISH,
+        DataProvider.GEAR,
+        DataProvider.GLYPH,
+        DataProvider.MELEE,
+        DataProvider.MISC,
+        DataProvider.MOD,
+        DataProvider.NODE,
+        DataProvider.PET,
+        DataProvider.PRIMARY,
+        DataProvider.QUEST,
+        DataProvider.RESOURCE,
+        DataProvider.SECONDARY,
+        DataProvider.SENTINEL,
+        DataProvider.SENTINEL_WEAPON,
+        DataProvider.SIGIL,
+        DataProvider.SKIN,
+        DataProvider.WARFRAME,
+    ];
+    static get(type: string): any[] {
         switch (type) {
             case DataProvider.ALL:
                 return all;
